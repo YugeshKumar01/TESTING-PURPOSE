@@ -10,6 +10,12 @@ pipeline {
     }
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                deleteDir() // Clean the workspace directory
+            }
+        }
+
         stage('Checkout') {
             steps {
                 git url: "${GIT_REPO}", branch: "${BRANCH_NAME}", credentialsId: "${GIT_CREDENTIALS_ID}"
