@@ -7,6 +7,7 @@ pipeline {
         GIT_USER_EMAIL = 'yugeshkumar6202@gmail.com'
         BRANCH_NAME = 'main' // Change if using a different branch
         GIT_CREDENTIALS_ID = 'github' // The ID of the Jenkins credential you created
+        GIT_REPO_NAME = 'TESTING-PURPOSE'
     }
 
     stages {
@@ -53,7 +54,7 @@ pipeline {
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}" || echo "No changes to commit"
                         
                         # Push changes with authentication
-                        git push https://${GIT_USER_NAME}:${GIT_CREDENTIALS_ID}@github.com/${GIT_USER_NAME}/TESTING-PURPOSE.git ${BRANCH_NAME}
+                        git push https://${GIT_CREDENTIALS_ID}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                     """
                 }
             }
