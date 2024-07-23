@@ -53,7 +53,7 @@ pipeline {
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}" || echo "No changes to commit"
                         
                         # Push changes with authentication
-                        git push https://${GIT_USER_NAME}:${GIT_PASSWORD}@github.com/${GIT_USER_NAME}/TESTING-PURPOSE.git ${BRANCH_NAME}
+                        git push https://${GIT_USER_NAME}:${GIT_CREDENTIALS_ID}@github.com/${GIT_USER_NAME}/TESTING-PURPOSE.git ${BRANCH_NAME}
                     """
                 }
             }
