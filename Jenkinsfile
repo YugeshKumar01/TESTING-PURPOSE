@@ -41,6 +41,7 @@ pipeline {
 
         stage('Commit and Push') {
             steps {
+                withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 script {
                     sh """
                         # Configure git
@@ -54,9 +55,10 @@ pipeline {
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}" || echo "No changes to commit"
                         
                         # Push changes with authentication
-                        git push https://${GIT_CREDENTIALS_ID}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                     """
                 }
+              }
             }
         }
     }
