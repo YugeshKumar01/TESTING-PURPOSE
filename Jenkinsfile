@@ -27,7 +27,7 @@ pipeline {
         stage('Update Deployment File') {
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-                    dir('your-repo-name') {
+                    dir('TESTING-PURPOSE') {
                         script {
                             sh '''
                                 # Ensure we are in the correct directory
