@@ -8,6 +8,7 @@ pipeline {
         BRANCH_NAME = 'main' // Change if using a different branch
         GIT_CREDENTIALS_ID = 'github' // The ID of the Jenkins credential you created
         GIT_REPO_NAME = 'TESTING-PURPOSE'
+        NEW_IMAGE_NAME = "yugesh01/ultimate-cicd-pipeline:${BUILD_NUMBER}"
     }
 
     stages {
@@ -30,7 +31,7 @@ pipeline {
                     
                     sh """
                         echo "Replacing 'replaceImageTag' with ${BUILD_NUMBER} in deployment.yml"
-                        sed -i 's/replaceImageTag/${BUILD_NUMBER}/g' deployment.yml
+                        sh "sed -i 's|image: .*|image: $NEW_IMAGE_NAME|' deployment.yml"
                         
                         # Show updated file content
                         cat deployment.yml
