@@ -31,7 +31,7 @@ pipeline {
                     
                     sh """
                         echo "Replacing 'replaceImageTag' with ${BUILD_NUMBER} in deployment.yml"
-                        sh "sed -i 's|image: .*|image: $NEW_IMAGE_NAME|' deployment.yml"
+                        "sed -i 's|image: .*|image: $NEW_IMAGE_NAME|' deployment.yml"
                         
                         # Show updated file content
                         cat deployment.yml
